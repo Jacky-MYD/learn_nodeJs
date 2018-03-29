@@ -18,6 +18,7 @@ node.js学习篇  one day one hour
 
 #### day05, 事件的监听、移除及查询，接口编写
 * 事件的监听、移除及查询
+
         ```events.js
             var EventEmitter = require('events').EventEmitter; // 引进events的EventEmitter方法
 
@@ -53,6 +54,7 @@ node.js学习篇  one day one hour
             // 查询事件的剩余个数
             console.log(life.listeners('testFun').length);
             console.log(EventEmitter.listenerCount(life, 'testFun'))
+
         ```
 * 接口编写
         由于方便的原因，编辑接口的文件在day03_http目录中的comment.js文件，该接口是以慕课网的评论接口为案例。。。
