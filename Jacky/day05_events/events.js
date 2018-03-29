@@ -66,6 +66,6 @@ var hasPlayListerner = life.emit('testFun333', '妹子');
 console.log(life.listeners('testFun').length);
 console.log(EventEmitter.listenerCount(life, 'testFun'))
 
-// console.log(hasConfortListerner); // true
-//
-// console.log(hasPlayListerner); // false
+console.log(hasConfortListerner); // true
+
+console.log(hasPlayListerner); // false

@@ -17,23 +17,40 @@ node.js学习篇
         另外以慕课网为例学习一个小爬虫
 
 #### day05, 事件的监听、移除及查询
-        ```
-            var EventEmitter = require('events').EventEmitter;
+        ```events.js
+        var EventEmitter = require('events').EventEmitter; // 引进events的EventEmitter方法
 
-            var life = new EventEmitter();
-            life.setMaxListeners(11); // 一般默认10个事件，当超过10个时，会给出警告，主要是为了防止内存泄漏
+        var life = new EventEmitter(); // 实例一个构造函数
+        life.setMaxListeners(11); // 一般默认10个事件，当超过10个时，会给出警告，主要是为了防止内存泄漏
 
-            function water(who) {
-                console.log('给 ' + who + ' 倒水');
-            }
+        function water(who) {  // 定义一个方法，用于移除事件时调用，因为直接移除事件是行不通的
+            console.log('给 ' + who + ' 倒水');
+        }
 
-            life.on('testFun', water);
+        life.on('testFun', water); // 事件
 
-            life.on('testFun', function (who) {
-                console.log('给 ' + who + ' 揉肩');
-            })
+        life.on('testFun', function (who) { // 多个事件
+            console.log('给 ' + who + ' 揉肩');
+        })
 
-            life.on('testFun', function (who) {
-                console.log('给 ' + who + ' 做饭');
-            })
+        life.on('testFun', function (who) { // 多个事件
+            console.log('给 ' + who + ' 做饭');
+        })
+
+        // 移除事件, 要先定义一个function, 并且将这个fun传的监听事件中，如上面的倒水例子
+        life.removeListener('testFun', water); // 单个移除
+        life.removeAllListeners(); // 移除所有（无参数时)
+        life.removeAllListeners('testFun222'); // 传入参数，只移除指定的事件
+
+        life.emit('testFun', '汉子');  // 监听'testFun'事件
+
+        var hasConfortListerner = life.emit('testFun222', '妹子'); // 判断事件是否被监听，返回true／false
+        var hasPlayListerner = life.emit('testFun333', '妹子');
+        console.log(hasConfortListerner); // true
+        console.log(hasPlayListerner); // false
+
+        // 查询事件的剩余个数
+        console.log(life.listeners('testFun').length);
+        console.log(EventEmitter.listenerCount(life, 'testFun'))
+
         ```
