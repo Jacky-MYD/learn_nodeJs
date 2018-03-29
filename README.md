@@ -11,3 +11,29 @@ node.js学习篇
 #### day03， callback、async、scope、http等
 * day03
         这里主要简述学校回调函数、异步、作用域、事件已经http源码的解读。
+
+#### day04，http性能测试
+        语法：ab -n1000 -c10 http://www.baidu.com/，
+        另外以慕课网为例学习一个小爬虫
+
+#### day05, 事件的监听、移除及查询
+        ```
+            var EventEmitter = require('events').EventEmitter;
+
+            var life = new EventEmitter();
+            life.setMaxListeners(11); // 一般默认10个事件，当超过10个时，会给出警告，主要是为了防止内存泄漏
+
+            function water(who) {
+                console.log('给 ' + who + ' 倒水');
+            }
+
+            life.on('testFun', water);
+
+            life.on('testFun', function (who) {
+                console.log('给 ' + who + ' 揉肩');
+            })
+
+            life.on('testFun', function (who) {
+                console.log('给 ' + who + ' 做饭');
+            })
+        ```
