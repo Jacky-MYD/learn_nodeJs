@@ -20,6 +20,7 @@ node.js学习篇  one day one hour
 * 事件的监听、移除及查询
 
         ```events.js
+
             var EventEmitter = require('events').EventEmitter; // 引进events的EventEmitter方法
 
             var life = new EventEmitter(); // 实例一个构造函数
