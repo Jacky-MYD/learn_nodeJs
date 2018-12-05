@@ -154,38 +154,117 @@ var buf = new Buffer.alloc(1024);
  * @type {"fs"}
  */
 
-console.log("准备打开文件！");
-fs.open('input.txt', 'r+', function(err, fd) {
+// console.log("准备打开文件！");
+// fs.open('input.txt', 'r+', function(err, fd) {
+//     if (err) {
+//         return console.error(err);
+//     }
+//     console.log("文件打开成功！");
+//     console.log("截取10字节内的文件内容，超出部分将被去除。");
+//
+//     // 截取文件
+//     fs.ftruncate(fd, 10, function(err){
+//         if (err){
+//             console.log(err);
+//         }
+//         console.log("文件截取成功。");
+//         console.log("读取相同的文件");
+//         fs.read(fd, buf, 0, buf.length, 0, function(err, bytes){
+//             if (err){
+//                 console.log(err);
+//             }
+//
+//             // 仅输出读取的字节
+//             if(bytes > 0){
+//                 console.log(buf.slice(0, bytes).toString());
+//             }
+//
+//             // 关闭文件
+//             fs.close(fd, function(err){
+//                 if (err){
+//                     console.log(err);
+//                 }
+//                 console.log("文件关闭成功！");
+//             });
+//         });
+//     });
+// });
+
+/**
+ * 删除文件
+ * fs.unlink(path, callback)
+ * 参数：
+ * path - 文件路径。
+ * callback - 回调函数，没有参数。
+ * @type {"fs"}
+ */
+
+// console.log("准备删除文件！");
+// fs.unlink('input.txt', function(err) {
+//     if (err) {
+//         return console.error(err);
+//     }
+//     console.log("文件删除成功！");
+// });
+
+/**
+ * 创建目录
+ * fs.unlink(path, callback)
+ * 参数：
+ * path - 文件路径。
+ * mode - 设置目录权限，默认为 0777。
+ * callback - 回调函数，没有参数。
+ * @type {"fs"}
+ */
+// console.log("创建目录 /tmp/test/");
+// fs.mkdir("/tmp/test/",function(err){
+//     if (err) {
+//         return console.error(err);
+//     }
+//     console.log("目录创建成功。");
+// });
+
+/**
+ * 读取目录
+ * fs.readdir(path, callback)
+ * 参数：
+ * path - 文件路径。
+ * callback - 回调函数，回调函数带有两个参数err, files，err 为错误信息，files 为 目录下的文件数组列表。
+ * @type {"fs"}
+ */
+
+// console.log("查看 /tmp 目录");
+// fs.readdir("/tmp/",function(err, files){
+//     if (err) {
+//         return console.error(err);
+//     }
+//     files.forEach( function (file){
+//         console.log( file );
+//     });
+// });
+
+
+/**
+ * 删除目录
+ * fs.unlink(path, callback)
+ * 参数：
+ * path - 文件路径。
+ * callback - 回调函数，没有参数。
+ * @type {"fs"}
+ */
+
+console.log("准备删除目录 /tmp/test");
+fs.rmdir("/tmp/test",function(err){
     if (err) {
         return console.error(err);
     }
-    console.log("文件打开成功！");
-    console.log("截取10字节内的文件内容，超出部分将被去除。");
-
-    // 截取文件
-    fs.ftruncate(fd, 10, function(err){
-        if (err){
-            console.log(err);
+    console.log("读取 /tmp 目录");
+    fs.readdir("/tmp/",function(err, files){
+        if (err) {
+            return console.error(err);
         }
-        console.log("文件截取成功。");
-        console.log("读取相同的文件");
-        fs.read(fd, buf, 0, buf.length, 0, function(err, bytes){
-            if (err){
-                console.log(err);
-            }
-
-            // 仅输出读取的字节
-            if(bytes > 0){
-                console.log(buf.slice(0, bytes).toString());
-            }
-
-            // 关闭文件
-            fs.close(fd, function(err){
-                if (err){
-                    console.log(err);
-                }
-                console.log("文件关闭成功！");
-            });
+        files.forEach( function (file){
+            console.log( file );
         });
     });
 });
